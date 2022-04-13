@@ -2,11 +2,11 @@ import { Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 
 Then(
-    /^the login form should contain the text Demo SnapNurse$/,
-    async function () {
-        console.log("the login form should contain the text Demo SnapNurse");
+    /^the "([^"]*)" should contain a login button$/,
+    async function (elementKey: string) {
+        console.log(`the ${elementKey} should contain a login button`);
 
-        const content = await global.page.textContent("[page-header]");
-        expect(content).toBe("Demo SnapNurse");
+        const content = await global.page.locator('id=loginBtn');
+        await expect(content).toBeVisible();
     }
 )
